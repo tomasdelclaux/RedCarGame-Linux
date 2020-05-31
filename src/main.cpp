@@ -2,7 +2,18 @@
 #include "controller.h"
 #include "game.h"
 #include "renderer.h"
+#include <thread>
+#include <chrono>
 
 int main(){
-    std::cout << "RED CAR GAME !!!!!";
+    constexpr std::size_t kFramesPerSecond{60};
+    constexpr std::size_t kMsperFrame{1000 / kFramesPerSecond};
+    constexpr std::size_t kScreenWidth{640};
+    constexpr std::size_t kScreenHeight{640};
+    constexpr std::size_t kGridWidth{32};
+    constexpr std::size_t kGridHeight{32};
+
+    Renderer renderer(kScreenWidth, kScreenHeight, kGridWidth, kGridHeight);
+
+    std::cout << "RED CAR GAME !!!!!\n";
 }
