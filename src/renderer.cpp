@@ -58,13 +58,36 @@ void Renderer::Render(){
     block.h = screen_height / grid_height;
 
     //Clear Screen
-    SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF);
+    SDL_SetRenderDrawColor(sdl_renderer, 0, 12, 0, SDL_ALPHA_OPAQUE);
     SDL_RenderClear(sdl_renderer);
 
+    //Draw the Roads
+    SDL_SetRenderDrawColor(sdl_renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+    SDL_Rect r1;
+    r1.x = 256;
+    r1.y = 0;
+    r1.w = 5;
+    r1.h = 640;
+    
+    SDL_RenderFillRect(sdl_renderer, &r1);
+    VerticalDottedLine(128);
+    VerticalDottedLine(384);
+    VerticalDottedLine(512);
+    SDL_RenderPresent(sdl_renderer);
  }
 
 
 void Renderer::UpdateWindowTitle(int distance, int fps){
     std::string title{"Distance: " + std::to_string(distance) + "FPS: " + std::to_string(fps)};
     SDL_SetWindowTitle(sdl_window, title.c_str());
+}
+
+void Renderer::VerticalDottedLine(int start_x){
+    int position_y = 0;
+    int dottedWidth = 10;
+    int spaceWidth = 5;
+    while(position_y < screen_height){
+        SDL_RenderDrawLine(sdl_renderer, start_x, position_y, start_x, position_y + dottedWidth);
+        position_y += dottedWidth + spaceWidth;
+    }
 }

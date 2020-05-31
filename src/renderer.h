@@ -14,6 +14,8 @@ class Renderer {
 
     void UpdateWindowTitle(int distance, int fps);
 
+    void VerticalDottedLine(int start_x);
+
     private:
     SDL_Window *sdl_window;
     SDL_Renderer *sdl_renderer;
