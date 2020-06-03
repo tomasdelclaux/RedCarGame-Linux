@@ -73,6 +73,11 @@ void Renderer::Render(){
     VerticalDottedLine(128);
     VerticalDottedLine(384);
     VerticalDottedLine(512);
+
+
+    //Vehicle Animation
+    SDL_Texture *spriteSheet;
+    SDL_Surface *temp = IMG_Load("assets/redCar.png");
     SDL_RenderPresent(sdl_renderer);
  }
 

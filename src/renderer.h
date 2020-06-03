@@ -3,6 +3,9 @@
 
 #include <vector>
 #include "SDL.h"
+#ifndef __INTELLISENSE__
+#include "SDL2_image/SDL_image.h"
+#endif
 
 class Renderer {
     public:
