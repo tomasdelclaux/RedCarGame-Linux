@@ -18,7 +18,7 @@ Renderer::Renderer(const std::size_t screen_width,
     }
 
     // Create Window
-    sdl_window = SDL_CreateWindow("Snake Game", SDL_WINDOWPOS_CENTERED,
+    sdl_window = SDL_CreateWindow("Red Car Game", SDL_WINDOWPOS_CENTERED,
                                 SDL_WINDOWPOS_CENTERED, screen_width,
                                 screen_height, SDL_WINDOW_SHOWN);
 
@@ -34,6 +34,13 @@ Renderer::Renderer(const std::size_t screen_width,
         std::cerr << "SDL_Error: " << SDL_GetError() << "\n";
     }
 
+    //Initialize PNG loading
+    if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG)){
+        std::cout << "SDL_image could not initialize.\n";
+        std::cerr << IMG_GetError() << "\n";
+    }
+    redCar = IMG_LoadTexture(sdl_renderer, "../assets/redCar.png");
+
     // SDL_Surface *sdl_surface = SDL_GetWindowSurface(sdl_window);
 
     // if(!sdl_surface)
@@ -43,7 +50,7 @@ Renderer::Renderer(const std::size_t screen_width,
     // }
 
     // SDL_UpdateWindowSurface(sdl_window);
-    SDL_Delay(10000);
+    SDL_Delay(1000);
 }
 
 //Destructor
@@ -76,8 +83,12 @@ void Renderer::Render(){
 
 
     //Vehicle Animation
-    SDL_Texture *spriteSheet;
-    SDL_Surface *temp = IMG_Load("assets/redCar.png");
+    SDL_Rect animation;
+    animation.x = 150;
+    animation.y = 150;
+    animation.w = 90;
+    animation.h = 90;
+    SDL_RenderCopy(sdl_renderer, redCar, NULL, &animation);
     SDL_RenderPresent(sdl_renderer);
  }
 
