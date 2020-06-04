@@ -13,5 +13,5 @@ find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS} src)
 
-add_executable(RedCarGame src/main.cpp src/game.cpp src/controller.cpp src/renderer.cpp src/car.cpp)
+add_executable(RedCarGame src/main.cpp src/game.cpp src/controller.cpp src/renderer.cpp src/vehicle.cpp src/lane.cpp)
 target_link_libraries(RedCarGame ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARIES})
