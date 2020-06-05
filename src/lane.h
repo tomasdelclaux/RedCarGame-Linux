@@ -22,4 +22,4 @@ class Lane{
     std::vector<Vehicle*> _vehicles;
 };
 
-#endif;
+#endif

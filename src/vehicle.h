@@ -2,6 +2,7 @@
 #define VEHICLE_H
 
 enum Type { red, blue, white, truck};
+enum Direction {kUp, kLeft, Kright};
 
 class Vehicle{
     public:
@@ -10,6 +11,9 @@ class Vehicle{
 
     //Destructor
     ~Vehicle();
+
+    //Direction
+    Direction direction;
 
     private:
     //Red, blue, truck, white
@@ -28,6 +32,11 @@ class Vehicle{
 
     //velocity
     int v;
+};
+
+class redCar : Vehicle {
+    public:
+    void Update();
 };
 
 #endif
