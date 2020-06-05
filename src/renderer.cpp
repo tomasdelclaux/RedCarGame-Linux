@@ -74,7 +74,7 @@ void Renderer::Render(){
     r1.x = 256;
     r1.y = 0;
     r1.w = 5;
-    r1.h = 640;
+    r1.h = 800;
     
     SDL_RenderFillRect(sdl_renderer, &r1);
     VerticalDottedLine(128);

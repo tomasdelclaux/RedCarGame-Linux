@@ -1,3 +1,11 @@
-//Todo implement lane methods
+#include "lane.h"
 
-//Need to keep track of elements in lane and make them disappear when they reach the bottom line
+//TODO
+Lane::Lane(int direction){
+
+};
+
+void addVehicle(Type type);
+
+void removeVehicle(Vehicle*);
+
