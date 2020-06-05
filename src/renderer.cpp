@@ -59,7 +59,7 @@ Renderer::~Renderer() {
   SDL_Quit();
 }
 
-void Renderer::Render(){
+void Renderer::Render(RedCar &redCar, std::vector<Lane> &lanes){
     SDL_Rect block;
     block.w = screen_width / grid_width;
     block.h = screen_height / grid_height;

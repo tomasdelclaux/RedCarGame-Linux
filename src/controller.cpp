@@ -2,7 +2,7 @@
 #include <iostream>
 #include "SDL.h"
 
-void Controller::ChangeDirection(Vehicle &redCar, Direction input){
+void Controller::ChangeDirection(RedCar &redCar, Direction input){
   redCar.direction = input;
   return;
 }

@@ -3,6 +3,8 @@
 
 #include <vector>
 #include "SDL.h"
+#include "vehicle.h"
+#include "lane.h"
 #ifndef __INTELLISENSE__
 #include "SDL2_image/SDL_image.h"
 #endif
@@ -13,7 +15,7 @@ class Renderer {
              const std::size_t grid_width, const std::size_t grid_height);
     ~Renderer();
 
-    void Render();
+    void Render(RedCar &redCar, std::vector<Lane> &lanes);
 
     void UpdateWindowTitle(int distance, int fps);
 

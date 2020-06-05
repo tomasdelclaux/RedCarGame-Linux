@@ -1,8 +1,10 @@
 #ifndef VEHICLE_H
 #define VEHICLE_H
+#include <iostream>
+#include <math.h>
 
 enum Type { red, blue, white, truck};
-enum Direction {kUp, kLeft, Kright};
+enum Direction {kUp, kLeft, kRight};
 
 class Vehicle{
     public:
@@ -15,12 +17,12 @@ class Vehicle{
     //Direction
     Direction direction;
 
-    private:
+    protected:
     //Red, blue, truck, white
     Type _type;
 
-    //Pointer to animation class for this object
-    int animation;
+    //asset to load for this vehicle
+    std::string image;
     
     //Dimensions
     int w;
@@ -34,8 +36,10 @@ class Vehicle{
     int v;
 };
 
-class redCar : Vehicle {
+class RedCar : public Vehicle {
     public:
+    RedCar();
+    ~RedCar();
     void Update();
 };
 

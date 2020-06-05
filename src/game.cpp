@@ -2,6 +2,19 @@
 #include <iostream>
 #include "SDL.h"
 
+Game::Game() {
+  Lane Lane1(-1);
+  Lane Lane2(-1);
+  Lane Lane3(0);
+  Lane Lane4(0);
+  Lane Lane5(5);
+  lanes.emplace_back(std::move(Lane1));
+  lanes.emplace_back(std::move(Lane2));
+  lanes.emplace_back(std::move(Lane3));
+  lanes.emplace_back(std::move(Lane4));
+  lanes.emplace_back(std::move(Lane5));
+}
+
 void Game::Run(Controller const &controller, Renderer &renderer,
                std::size_t target_frame_duration) {
   Uint32 title_timestamp = SDL_GetTicks();
@@ -16,7 +29,7 @@ void Game::Run(Controller const &controller, Renderer &renderer,
 
     // Input, Update, Render - the main game loop.
     controller.HandleInput(running);
-    renderer.Render();
+    renderer.Render(redCar, lanes);
 
     frame_end = SDL_GetTicks();
 

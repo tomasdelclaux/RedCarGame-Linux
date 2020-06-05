@@ -7,7 +7,7 @@ class Controller {
     public:
     void HandleInput(bool &running) const;
 
-    void ChangeDirection(Vehicle &redCar, Direction direction);
+    void ChangeDirection(RedCar &redCar, Direction direction);
 };
 
 #endif
