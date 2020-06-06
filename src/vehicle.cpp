@@ -6,7 +6,10 @@ Vehicle::Vehicle(Type type){
         case red :
             w = 90;
             h = 90;
-            v = 5;
+            v = 0.0001;
+            x = 300;
+            y = 700;
+            direction = kRight;
             image = "assets/redCar.png";
         case blue :
             w = 90;
@@ -40,14 +43,19 @@ void RedCar::Update(){
     switch(direction)
     {
         case kLeft :
-            y += 1.0/sqrt(2) * v;
-            x -= 1.0/sqrt(2) * v;
+            std::cout << "Moving left\n";
+            x-=5;
+            break;
         case kRight :
-            y += 1.0/sqrt(2) * v;
-            x += 1.0/sqrt(2) * v;
+            std::cout << "Moving right\n";
+            x += 5;
+            break;
         case kUp :
-            y += 2*v;
-        default:
-            y += v;
+            std::cout << "Moving up\n";
+            y -= 5;
+            break;
+        case noPress :
+            y += 5;
+            break;
     }
 }

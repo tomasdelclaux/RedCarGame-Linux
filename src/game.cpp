@@ -28,7 +28,7 @@ void Game::Run(Controller const &controller, Renderer &renderer,
     frame_start = SDL_GetTicks();
 
     // Input, Update, Render - the main game loop.
-    controller.HandleInput(running);
+    controller.HandleInput(running, redCar);
     renderer.Render(redCar, lanes);
 
     frame_end = SDL_GetTicks();

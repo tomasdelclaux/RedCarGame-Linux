@@ -5,9 +5,9 @@
 
 class Controller {
     public:
-    void HandleInput(bool &running) const;
+    void HandleInput(bool &running, RedCar &redCar) const;
 
-    void ChangeDirection(RedCar &redCar, Direction direction);
+    void ChangeDirection(RedCar &redCar, Direction direction) const;
 };
 
 #endif

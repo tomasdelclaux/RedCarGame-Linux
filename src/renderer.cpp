@@ -39,18 +39,6 @@ Renderer::Renderer(const std::size_t screen_width,
         std::cout << "SDL_image could not initialize.\n";
         std::cerr << IMG_GetError() << "\n";
     }
-    redCar = IMG_LoadTexture(sdl_renderer, "../assets/redCar.png");
-
-    // SDL_Surface *sdl_surface = SDL_GetWindowSurface(sdl_window);
-
-    // if(!sdl_surface)
-    // {
-    //     std::cout<<"Failed to get the surface from the window\n";
-    //     std::cerr<<"SDL2 Error: " << SDL_GetError() << "\n";
-    // }
-
-    // SDL_UpdateWindowSurface(sdl_window);
-    SDL_Delay(1000);
 }
 
 //Destructor
@@ -81,14 +69,18 @@ void Renderer::Render(RedCar &redCar, std::vector<Lane> &lanes){
     VerticalDottedLine(384);
     VerticalDottedLine(512);
 
+    //Draw vehicles
 
-    //Vehicle Animation
+    //RedCar
     SDL_Rect animation;
-    animation.x = 150;
-    animation.y = 150;
-    animation.w = 90;
-    animation.h = 90;
-    SDL_RenderCopy(sdl_renderer, redCar, NULL, &animation);
+    SDL_Texture *Car;
+    Car = IMG_LoadTexture(sdl_renderer, "../assets/redCar.png");
+    redCar.Update();
+    animation.x = redCar.getX();
+    animation.y = redCar.getY();
+    animation.w = redCar.getW();
+    animation.h = redCar.getH();
+    SDL_RenderCopy(sdl_renderer, Car, NULL, &animation);
     SDL_RenderPresent(sdl_renderer);
  }
 

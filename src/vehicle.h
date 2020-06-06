@@ -4,7 +4,7 @@
 #include <math.h>
 
 enum Type { red, blue, white, truck};
-enum Direction {kUp, kLeft, kRight};
+enum Direction {kUp, kLeft, kRight, noPress};
 
 class Vehicle{
     public:
@@ -13,6 +13,30 @@ class Vehicle{
 
     //Destructor
     ~Vehicle();
+
+    //Getters
+    int getX(){
+        return x;
+    };
+
+    int getY(){
+        return y;
+    }
+
+    int getH(){
+        return h;
+    }
+
+    int getW(){
+        return w;
+    }
+
+    std::string getImage(){
+        return image;
+    }
+
+    //method to update position
+    void Update();
 
     //Direction
     Direction direction;
@@ -33,7 +57,7 @@ class Vehicle{
     int y;
 
     //velocity
-    int v;
+    float v;
 };
 
 class RedCar : public Vehicle {
