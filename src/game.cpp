@@ -2,17 +2,12 @@
 #include <iostream>
 #include "SDL.h"
 
-Game::Game() {
-  Lane Lane1(1);
-  Lane Lane2(2);
-  Lane Lane3(3);
-  Lane Lane4(4);
-  Lane Lane5(5);
-  lanes.emplace_back(std::move(Lane1));
-  lanes.emplace_back(std::move(Lane2));
-  lanes.emplace_back(std::move(Lane3));
-  lanes.emplace_back(std::move(Lane4));
-  lanes.emplace_back(std::move(Lane5));
+Game::Game(int kScreenHeight){
+  lanes.emplace_back(Lane(1,kScreenHeight));
+  lanes.emplace_back(Lane(2,kScreenHeight));
+  lanes.emplace_back(Lane(3,kScreenHeight));
+  lanes.emplace_back(Lane(4,kScreenHeight));
+  lanes.emplace_back(Lane(5,kScreenHeight));
 }
 
 void Game::Run(Controller const &controller, Renderer &renderer,
@@ -29,11 +24,11 @@ void Game::Run(Controller const &controller, Renderer &renderer,
 
     // Input, Update, Render - the main game loop.
     controller.HandleInput(running, redCar);
-    for (auto &lane : lanes){
-    std::cout << lane.getDirection() << "\n";
-    lane.addVehicle(truck);
-    }
-    std::cout << "END OF LOOP\n";
+    // for (auto &lane : lanes){
+    // std::cout << lane.getDirection() << "\n";
+    // lane.addVehicle(truck);
+    // }
+    // std::cout << "END OF LOOP\n";
     // renderer.Render(redCar, lanes);
 
     frame_end = SDL_GetTicks();

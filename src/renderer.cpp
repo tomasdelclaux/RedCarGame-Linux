@@ -4,12 +4,9 @@
 
 //Constructor
 Renderer::Renderer(const std::size_t screen_width,
-                   const std::size_t screen_height,
-                   const std::size_t grid_width, const std::size_t grid_height)
+                   const std::size_t screen_height)
     : screen_width(screen_width),
-        screen_height(screen_height),
-        grid_width(grid_width),
-        grid_height(grid_height) {
+        screen_height(screen_height){
     
     // Initialize SDL
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -48,9 +45,6 @@ Renderer::~Renderer() {
 }
 
 void Renderer::Render(RedCar &redCar, std::vector<Lane> &lanes){
-    SDL_Rect block;
-    block.w = screen_width / grid_width;
-    block.h = screen_height / grid_height;
 
     //Clear Screen
     SDL_SetRenderDrawColor(sdl_renderer, 0, 12, 0, SDL_ALPHA_OPAQUE);

@@ -8,10 +8,11 @@
 class Lane{
     public:
     //Constructors
-    Lane(int dir) : direction(dir){};
+    Lane(int dir, int kScreenHeight) : direction(dir), laneHeight(kScreenHeight){};
 
     //Copy
     Lane(const Lane &lane2){
+        std::cout << "copy constructor called\n";
         direction = lane2.direction;
         vehicles = lane2.vehicles;
         probability = lane2.probability;
@@ -19,8 +20,9 @@ class Lane{
 
     //Move
     Lane(Lane &&otherLane){
+        std::cout << "Move constructor called\n";
         direction = otherLane.direction;
-        vehicles = std::move(otherLane.vehicles);
+        // vehicles = std::move(otherLane.vehicles);
         probability = otherLane.probability;
     };
 
@@ -43,6 +45,8 @@ class Lane{
     private:
     //can be reverse(-1) or normal(0)
     int direction;
+
+    int laneHeight;
     
     //vector of vehicles in the lane
     std::vector<Vehicle> vehicles;
