@@ -8,63 +8,61 @@ enum Direction {kUp, kLeft, kRight, noPress};
 
 class Vehicle{
     public:
-    //Constructor
-    Vehicle(Type type);
+        //Constructor
+        Vehicle(Type type);
 
-    //Destructor
-    ~Vehicle();
+        //Copy Constructor
+        Vehicle(const Vehicle &v2);
 
-    //Getters
-    int getX(){
-        return x;
-    };
+        //Move Constructor
+        Vehicle(Vehicle &&otherV);
 
-    int getY(){
-        return y;
-    }
+        //overload assignment operator
+        Vehicle &operator=(const Vehicle &rv){
+            return *this;
+        };
 
-    int getH(){
-        return h;
-    }
+        //Destructor
+        ~Vehicle();
 
-    int getW(){
-        return w;
-    }
+        //Getters
+        int getX();
+        int getY();
+        int getH();
+        int getW();
 
-    std::string getImage(){
-        return image;
-    }
+        std::string getImage();
 
-    //method to update position
-    void Update();
+        //method to update position
+        void Update();
 
-    //Direction
-    Direction direction;
+        //Direction
+        Direction direction;
 
     protected:
-    //Red, blue, truck, white
-    Type _type;
+        //Red, blue, truck, white
+        Type type;
 
-    //asset to load for this vehicle
-    std::string image;
-    
-    //Dimensions
-    int w;
-    int h;
+        //asset to load for this vehicle
+        std::string image;
+        
+        //Dimensions
+        int w;
+        int h;
 
-    //Coordinates
-    int x;
-    int y;
+        //Coordinates
+        int x;
+        int y;
 
-    //velocity
-    float v;
+        //velocity
+        float v;
 };
 
 class RedCar : public Vehicle {
     public:
-    RedCar();
-    ~RedCar();
-    void Update();
+        RedCar();
+        ~RedCar();
+        void Update();
 };
 
 #endif

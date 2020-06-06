@@ -3,10 +3,10 @@
 #include "SDL.h"
 
 Game::Game() {
-  Lane Lane1(-1);
-  Lane Lane2(-1);
-  Lane Lane3(0);
-  Lane Lane4(0);
+  Lane Lane1(1);
+  Lane Lane2(2);
+  Lane Lane3(3);
+  Lane Lane4(4);
   Lane Lane5(5);
   lanes.emplace_back(std::move(Lane1));
   lanes.emplace_back(std::move(Lane2));
@@ -29,7 +29,12 @@ void Game::Run(Controller const &controller, Renderer &renderer,
 
     // Input, Update, Render - the main game loop.
     controller.HandleInput(running, redCar);
-    renderer.Render(redCar, lanes);
+    for (auto &lane : lanes){
+    std::cout << lane.getDirection() << "\n";
+    lane.addVehicle(truck);
+    }
+    std::cout << "END OF LOOP\n";
+    // renderer.Render(redCar, lanes);
 
     frame_end = SDL_GetTicks();
 
