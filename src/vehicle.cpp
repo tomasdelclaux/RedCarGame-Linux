@@ -58,6 +58,7 @@ Vehicle::~Vehicle(){
     std::cout << "Vehicle is destructed\n";
 }
 
+
 RedCar::RedCar() : Vehicle(red){};
 
 RedCar::~RedCar(){

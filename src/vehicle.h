@@ -22,16 +22,37 @@ class Vehicle{
             return *this;
         };
 
+        //Overloading == operator to use list remove
+        bool operator==(const Vehicle &v2) const{
+            if (x == v2.getX() && y == v2.getY() && type == v2.getType()){
+                return true;
+            }
+            else {
+                return false;
+            }
+        };
         //Destructor
         ~Vehicle();
 
         //Getters
-        int getX();
-        int getY();
-        int getH();
-        int getW();
-
-        std::string getImage();
+        int getX() const{
+            return x;
+        };
+        int getY() const{
+            return y;
+        };
+        int getH() const{
+            return h;
+        };
+        int getW() const{
+            return w;
+        };
+        int getType() const{
+            return type;
+        };
+        const char* getImage() {
+            return image;
+        };
 
         //method to update position
         void Update();
@@ -44,7 +65,7 @@ class Vehicle{
         Type type;
 
         //asset to load for this vehicle
-        std::string image;
+        const char *image;
         
         //Dimensions
         int w;

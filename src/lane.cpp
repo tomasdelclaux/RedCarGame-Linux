@@ -4,7 +4,7 @@ int Lane::getDirection(){
     return direction;
 }
 
-std::vector<Vehicle> Lane::getVehicles(){
+std::list<Vehicle> Lane::getVehicles(){
     return vehicles;
 }
 
@@ -13,7 +13,11 @@ void Lane::addVehicle(Type type){
     vehicles.emplace_back(std::move(newVehicle));
 };
 
-void Lane::removeVehicle(Vehicle){
-    vehicles.erase(vehicles.end());
-};
+void Lane::removeVehicles(){
+    for (auto &vehicle : vehicles){
+        if (vehicle.getY() > laneHeight){
+            vehicles.remove(vehicle);
+        }
+    }
+}
 

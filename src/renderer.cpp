@@ -78,18 +78,17 @@ void Renderer::Render(RedCar &redCar, std::vector<Lane> &lanes){
     //     // animation.h = lane->getVehicle(0).getH();
     //     // SDL_RenderCopy(sdl_renderer, Truck, NULL, &animation);
     // }
-    std::cout << "ending loop\n";
 
     //RedCar
-    // SDL_Rect animation;
-    // SDL_Texture *Car;
-    // Car = IMG_LoadTexture(sdl_renderer, "../assets/redCar.png");
-    // redCar.Update();
-    // animation.x = redCar.getX();
-    // animation.y = redCar.getY();
-    // animation.w = redCar.getW();
-    // animation.h = redCar.getH();
-    // SDL_RenderCopy(sdl_renderer, Car, NULL, &animation);
+    SDL_Rect animation;
+    SDL_Texture *Car;
+    Car = IMG_LoadTexture(sdl_renderer, redCar.getImage());
+    redCar.Update();
+    animation.x = redCar.getX();
+    animation.y = redCar.getY();
+    animation.w = redCar.getW();
+    animation.h = redCar.getH();
+    SDL_RenderCopy(sdl_renderer, Car, NULL, &animation);
     SDL_RenderPresent(sdl_renderer);
  }
 

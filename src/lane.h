@@ -3,7 +3,8 @@
 
 #include "vehicle.h"
 #include <random>
-#include <vector>
+#include <list>
+#include <map>
 
 class Lane{
     public:
@@ -12,18 +13,18 @@ class Lane{
 
     //Copy
     Lane(const Lane &lane2){
-        std::cout << "copy constructor called\n";
         direction = lane2.direction;
         vehicles = lane2.vehicles;
-        probability = lane2.probability;
+        PNewVehicle = lane2.PNewVehicle;
+        PWhatVehicle = lane2.PWhatVehicle;
     };
 
     //Move
     Lane(Lane &&otherLane){
-        std::cout << "Move constructor called\n";
         direction = otherLane.direction;
-        // vehicles = std::move(otherLane.vehicles);
-        probability = otherLane.probability;
+        vehicles = std::move(otherLane.vehicles);
+        PNewVehicle = otherLane.PNewVehicle;
+        PWhatVehicle = std::move(otherLane.PWhatVehicle);
     };
 
     //overload assignment operator
@@ -35,10 +36,10 @@ class Lane{
     void addVehicle(Type type);
 
     //Remove vehicle from lane
-    void removeVehicle(Vehicle);
+    void removeVehicles();
 
     //Getters
-    std::vector<Vehicle> getVehicles();
+    std::list<Vehicle> getVehicles();
 
     int getDirection();
 
@@ -49,12 +50,13 @@ class Lane{
     int laneHeight;
     
     //vector of vehicles in the lane
-    std::vector<Vehicle> vehicles;
+    std::list<Vehicle> vehicles;
 
     std::random_device rd;
     std::uniform_int_distribution<int> distribution{(1,100)};
     std::mt19937 engine;
-    int probability;
+    int PNewVehicle{10};
+    std::map<char, int> PWhatVehicle;
 };
 
 #endif
