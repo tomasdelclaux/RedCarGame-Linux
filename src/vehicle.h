@@ -9,7 +9,7 @@ enum Direction {kUp, kLeft, kRight, noPress};
 class Vehicle{
     public:
         //Constructor
-        Vehicle(Type type);
+        Vehicle(Type type, int laneDir);
 
         //Copy Constructor
         Vehicle(const Vehicle &v2);

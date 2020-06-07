@@ -1,6 +1,6 @@
 #include "vehicle.h"
 
-Vehicle::Vehicle(Type type) : type(type) {
+Vehicle::Vehicle(Type type, int laneDir) : type(type) {
     switch(type)
     {
         case red :
@@ -15,19 +15,34 @@ Vehicle::Vehicle(Type type) : type(type) {
             w = 90;
             h = 90;
             v = 5;
-            image = "../assets/blueCar.png";
+            if (laneDir >= 0){
+                image = "../assets/blueCar.png";
+            }
+            else {
+                image = "../assets/blueCarReverse.png";
+            }
             break;
         case truck :
             w = 105;
             h = 180;
             v = 5;
-            image = "../assets/truck.png";
+            if (laneDir >= 0){
+                image = "../assets/truck.png";
+            }
+            else {
+                image = "../assets/truckReverse.png";
+            }
             break;
         case white :
             w = 90;
             h = 90;
             v = 5;
-            image = "../assets/white.png";
+            if (laneDir >= 0){
+                image = "../assets/white.png";
+            }
+            else {
+                image = "../assets/whiteReverse.png";
+            }
             break;
     }
 }
@@ -59,7 +74,7 @@ Vehicle::~Vehicle(){
 }
 
 
-RedCar::RedCar() : Vehicle(red){};
+RedCar::RedCar() : Vehicle(red, 0){};
 
 RedCar::~RedCar(){
     std::cout << "RedCar is destructed\n";

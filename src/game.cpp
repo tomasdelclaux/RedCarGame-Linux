@@ -3,11 +3,11 @@
 #include "SDL.h"
 
 Game::Game(int kScreenHeight){
-  lanes.emplace_back(Lane(1,kScreenHeight));
-  lanes.emplace_back(Lane(2,kScreenHeight));
-  lanes.emplace_back(Lane(3,kScreenHeight));
-  lanes.emplace_back(Lane(4,kScreenHeight));
-  lanes.emplace_back(Lane(5,kScreenHeight));
+  lanes.emplace_back(Lane(-1,kScreenHeight, 0));
+  lanes.emplace_back(Lane(-1,kScreenHeight, 128));
+  lanes.emplace_back(Lane(1,kScreenHeight, 256));
+  lanes.emplace_back(Lane(1,kScreenHeight, 384));
+  lanes.emplace_back(Lane(1,kScreenHeight, 512));
 }
 
 void Game::Run(Controller const &controller, Renderer &renderer,

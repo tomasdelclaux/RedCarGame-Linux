@@ -64,20 +64,15 @@ void Renderer::Render(RedCar &redCar, std::vector<Lane> &lanes){
     VerticalDottedLine(512);
 
     // Draw vehicles in lanes
-    // for (auto lane : lanes){
-    //     auto nlane = *lane;
-    //     std::cout << "lets go\n";
-    //     // nlane->addVehicle(truck);
-    //     // std::cout << "vehicle added";
-    //     // SDL_Rect animation;
-    //     // SDL_Texture *Truck;
-    //     // Truck = IMG_LoadTexture(sdl_renderer, "../assets/truck.png");
-    //     // animation.x = lane->getVehicle(0).getX();
-    //     // animation.y = lane->getVehicle(0).getY();
-    //     // animation.w = lane->getVehicle(0).getW();
-    //     // animation.h = lane->getVehicle(0).getH();
-    //     // SDL_RenderCopy(sdl_renderer, Truck, NULL, &animation);
-    // }
+    SDL_Rect camion;
+    SDL_Texture *Truck;
+    Truck = IMG_LoadTexture(sdl_renderer, "../assets/truck.png");
+    camion.x = 512;
+    camion.y = 0;
+    camion.w = 105;
+    camion.h = 180;
+    SDL_RenderCopy(sdl_renderer,Truck, NULL, &camion);
+
 
     //RedCar
     SDL_Rect animation;

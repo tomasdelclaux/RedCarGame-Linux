@@ -9,7 +9,8 @@
 class Lane{
     public:
     //Constructors
-    Lane(int dir, int kScreenHeight) : direction(dir), laneHeight(kScreenHeight){};
+    Lane(int dir, int kScreenHeight, int laneRefx) : direction(dir), laneHeight(kScreenHeight), 
+                                                    laneRefx(laneRefx), typeVehicle(1,100), newVehicle(1,100){};
 
     //Copy
     Lane(const Lane &lane2){
@@ -17,14 +18,18 @@ class Lane{
         vehicles = lane2.vehicles;
         PNewVehicle = lane2.PNewVehicle;
         PWhatVehicle = lane2.PWhatVehicle;
+        laneHeight = lane2.laneHeight;
+        laneRefx = lane2.laneRefx;
     };
 
     //Move
     Lane(Lane &&otherLane){
-        direction = otherLane.direction;
+        direction = std::move(otherLane.direction);
         vehicles = std::move(otherLane.vehicles);
-        PNewVehicle = otherLane.PNewVehicle;
+        PNewVehicle = std::move(otherLane.PNewVehicle);
         PWhatVehicle = std::move(otherLane.PWhatVehicle);
+        laneHeight = std::move(otherLane.laneHeight);
+        laneRefx = std::move(otherLane.laneRefx);
     };
 
     //overload assignment operator
@@ -45,19 +50,24 @@ class Lane{
     std::list<Vehicle> getVehicles();
 
     int getDirection();
+    int getLaneRefx();
 
     private:
     //can be reverse(-1) or normal(0)
     int direction;
 
+    //Screen distance of lane
     int laneHeight;
+
+    //Starting x coordinate of lane
+    int laneRefx;
     
     //vector of vehicles in the lane
     std::list<Vehicle> vehicles;
 
     std::random_device dev;
-    std::uniform_int_distribution<int> newVehicle{(1,100)};
-    std::uniform_int_distribution<int> typeVehicle{(1,100)};
+    std::uniform_int_distribution<int> newVehicle;
+    std::uniform_int_distribution<int> typeVehicle;
     std::mt19937 engine;
     int PNewVehicle{10};
     std::map<char, int> PWhatVehicle{{ 'T', 10}, {'W', 20}, {'B', 30}};
