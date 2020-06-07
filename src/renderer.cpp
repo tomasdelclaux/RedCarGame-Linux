@@ -64,14 +64,18 @@ void Renderer::Render(RedCar &redCar, std::vector<Lane> &lanes){
     VerticalDottedLine(512);
 
     // Draw vehicles in lanes
-    SDL_Rect camion;
-    SDL_Texture *Truck;
-    Truck = IMG_LoadTexture(sdl_renderer, "../assets/truck.png");
-    camion.x = 512;
-    camion.y = 0;
-    camion.w = 105;
-    camion.h = 180;
-    SDL_RenderCopy(sdl_renderer,Truck, NULL, &camion);
+    for (auto &lane : lanes){
+        for (auto &vehicle : lane.getVehicles()){
+            SDL_Rect obstacle;
+            SDL_Texture *cars;
+            cars = IMG_LoadTexture(sdl_renderer, vehicle.getImage());
+            obstacle.x = lane.getLaneRefx();
+            obstacle.y = vehicle.y;
+            obstacle.w = vehicle.w;
+            obstacle.h = vehicle.h;
+            SDL_RenderCopy(sdl_renderer, cars, NULL, &obstacle);
+        }
+    }
 
 
     //RedCar
@@ -79,10 +83,10 @@ void Renderer::Render(RedCar &redCar, std::vector<Lane> &lanes){
     SDL_Texture *Car;
     Car = IMG_LoadTexture(sdl_renderer, redCar.getImage());
     redCar.Update();
-    animation.x = redCar.getX();
-    animation.y = redCar.getY();
-    animation.w = redCar.getW();
-    animation.h = redCar.getH();
+    animation.x = redCar.x;
+    animation.y = redCar.y;
+    animation.w = redCar.w;
+    animation.h = redCar.h;
     SDL_RenderCopy(sdl_renderer, Car, NULL, &animation);
     SDL_RenderPresent(sdl_renderer);
  }

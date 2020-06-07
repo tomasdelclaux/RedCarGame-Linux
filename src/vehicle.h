@@ -24,7 +24,7 @@ class Vehicle{
 
         //Overloading == operator to use list remove
         bool operator==(const Vehicle &v2) const{
-            if (x == v2.getX() && y == v2.getY() && type == v2.getType()){
+            if (x == v2.x && y == v2.y && type == v2.getType()){
                 return true;
             }
             else {
@@ -35,23 +35,12 @@ class Vehicle{
         ~Vehicle();
 
         //Getters
-        int getX() const{
-            return x;
-        };
-        int getY() const{
-            return y;
-        };
-        int getH() const{
-            return h;
-        };
-        int getW() const{
-            return w;
-        };
-        int getType() const{
-            return type;
-        };
         const char* getImage() {
             return image;
+        };
+
+        Type getType() const{
+            return type;
         };
 
         //method to update position
@@ -60,13 +49,6 @@ class Vehicle{
         //Direction
         Direction direction;
 
-    protected:
-        //Red, blue, truck, white
-        Type type;
-
-        //asset to load for this vehicle
-        const char *image;
-        
         //Dimensions
         int w;
         int h;
@@ -74,6 +56,13 @@ class Vehicle{
         //Coordinates
         int x;
         int y;
+
+    protected:
+        //Red, blue, truck, white
+        Type type;
+
+        //asset to load for this vehicle
+        const char *image;
 
         //velocity
         float v;

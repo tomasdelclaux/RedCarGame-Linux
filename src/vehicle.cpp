@@ -15,6 +15,7 @@ Vehicle::Vehicle(Type type, int laneDir) : type(type) {
             w = 90;
             h = 90;
             v = 5;
+            y = 0;
             if (laneDir >= 0){
                 image = "../assets/blueCar.png";
             }
@@ -26,6 +27,7 @@ Vehicle::Vehicle(Type type, int laneDir) : type(type) {
             w = 105;
             h = 180;
             v = 5;
+            y = 0;
             if (laneDir >= 0){
                 image = "../assets/truck.png";
             }
@@ -37,6 +39,7 @@ Vehicle::Vehicle(Type type, int laneDir) : type(type) {
             w = 90;
             h = 90;
             v = 5;
+            y = 0;
             if (laneDir >= 0){
                 image = "../assets/white.png";
             }

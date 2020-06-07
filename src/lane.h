@@ -9,8 +9,7 @@
 class Lane{
     public:
     //Constructors
-    Lane(int dir, int kScreenHeight, int laneRefx) : direction(dir), laneHeight(kScreenHeight), 
-                                                    laneRefx(laneRefx), typeVehicle(1,100), newVehicle(1,100){};
+    Lane(int dir, int kScreenHeight, int laneRefx) : direction(dir), laneHeight(kScreenHeight), laneRefx(laneRefx){};
 
     //Copy
     Lane(const Lane &lane2){
@@ -38,7 +37,7 @@ class Lane{
     };
 
     //Add vehicle to lane
-    void addVehicle(Type type);
+    void addVehicle();
 
     //Remove vehicle from lane
     void removeVehicles();
@@ -65,10 +64,6 @@ class Lane{
     //vector of vehicles in the lane
     std::list<Vehicle> vehicles;
 
-    std::random_device dev;
-    std::uniform_int_distribution<int> newVehicle;
-    std::uniform_int_distribution<int> typeVehicle;
-    std::mt19937 engine;
     int PNewVehicle{10};
     std::map<char, int> PWhatVehicle{{ 'T', 10}, {'W', 20}, {'B', 30}};
 };
