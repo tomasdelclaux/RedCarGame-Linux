@@ -38,6 +38,9 @@ class Lane{
     //Remove vehicle from lane
     void removeVehicles();
 
+    //update positions of vehicles in the lane
+    void updatePositions();
+
     //Getters
     std::list<Vehicle> getVehicles();
 
@@ -52,11 +55,12 @@ class Lane{
     //vector of vehicles in the lane
     std::list<Vehicle> vehicles;
 
-    std::random_device rd;
-    std::uniform_int_distribution<int> distribution{(1,100)};
+    std::random_device dev;
+    std::uniform_int_distribution<int> newVehicle{(1,100)};
+    std::uniform_int_distribution<int> typeVehicle{(1,100)};
     std::mt19937 engine;
     int PNewVehicle{10};
-    std::map<char, int> PWhatVehicle;
+    std::map<char, int> PWhatVehicle{{ 'T', 10}, {'W', 20}, {'B', 30}};
 };
 
 #endif
