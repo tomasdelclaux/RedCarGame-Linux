@@ -63,19 +63,19 @@ void Renderer::Render(RedCar &redCar, std::vector<Lane> &lanes){
     VerticalDottedLine(384);
     VerticalDottedLine(512);
 
-    // Draw vehicles in lanes
-    for (auto &lane : lanes){
-        for (auto &vehicle : lane.getVehicles()){
-            SDL_Rect obstacle;
-            SDL_Texture *cars;
-            cars = IMG_LoadTexture(sdl_renderer, vehicle.getImage());
-            obstacle.x = lane.getLaneRefx();
-            obstacle.y = vehicle.y;
-            obstacle.w = vehicle.w;
-            obstacle.h = vehicle.h;
-            SDL_RenderCopy(sdl_renderer, cars, NULL, &obstacle);
-        }
-    }
+    // // Draw vehicles in lanes
+    // for (auto &lane : lanes){
+    //     for (auto &vehicle : lane.getVehicles()){
+    //         SDL_Rect obstacle;
+    //         SDL_Texture *cars;
+    //         cars = IMG_LoadTexture(sdl_renderer, vehicle.getImage());
+    //         obstacle.x = lane.getLaneRefx();
+    //         obstacle.y = vehicle.y;
+    //         obstacle.w = vehicle.w;
+    //         obstacle.h = vehicle.h;
+    //         SDL_RenderCopy(sdl_renderer, cars, NULL, &obstacle);
+    //     }
+    // }
 
 
     //RedCar

@@ -29,7 +29,7 @@ void Game::Run(Controller const &controller, Renderer &renderer,
       lane.addVehicle();
     }
 
-    renderer.Render(redCar, lanes);
+    // renderer.Render(redCar, lanes);
 
     for (auto &lane : lanes){
       lane.updatePositions();

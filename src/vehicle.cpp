@@ -41,10 +41,10 @@ Vehicle::Vehicle(Type type, int laneDir) : type(type) {
             v = 5;
             y = 0;
             if (laneDir >= 0){
-                image = "../assets/white.png";
+                image = "../assets/whiteCar.png";
             }
             else {
-                image = "../assets/whiteReverse.png";
+                image = "../assets/whiteCarReverse.png";
             }
             break;
     }
@@ -87,15 +87,12 @@ void RedCar::Update(){
     switch(direction)
     {
         case kLeft :
-            std::cout << "Moving left\n";
             x-=5;
             break;
         case kRight :
-            std::cout << "Moving right\n";
             x += 5;
             break;
         case kUp :
-            std::cout << "Moving up\n";
             y -= 5;
             break;
         case noPress :

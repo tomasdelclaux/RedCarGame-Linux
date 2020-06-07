@@ -46,7 +46,7 @@ class Lane{
     void updatePositions();
 
     //Getters
-    std::list<Vehicle> getVehicles();
+    std::list<Vehicle>& getVehicles();
 
     int getDirection();
     int getLaneRefx();
