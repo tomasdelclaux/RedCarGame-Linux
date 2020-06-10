@@ -14,10 +14,6 @@ void Controller::HandleInput(bool &running, RedCar &redCar) const {
       running = false;
     } else if (e.type == SDL_KEYDOWN) {
       switch (e.key.keysym.sym) {
-        case SDLK_UP:
-          ChangeDirection(redCar, kUp);
-          break;
-
         case SDLK_LEFT:
           ChangeDirection(redCar, kLeft);
           break;
@@ -29,6 +25,9 @@ void Controller::HandleInput(bool &running, RedCar &redCar) const {
         default:
           ChangeDirection(redCar, noPress);
       }
+    }
+    else {
+      ChangeDirection(redCar, noPress);
     }
   }
 }

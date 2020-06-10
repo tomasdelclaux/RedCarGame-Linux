@@ -4,7 +4,7 @@
 #include <math.h>
 
 enum Type { red, blue, white, truck};
-enum Direction {kUp, kLeft, kRight, noPress};
+enum Direction {kLeft, kRight, noPress};
 
 class Vehicle{
     public:
@@ -42,9 +42,6 @@ class Vehicle{
         //method to update position
         void Update();
 
-        //Direction
-        Direction direction;
-
         //Dimensions
         int w;
         int h;
@@ -66,6 +63,10 @@ class RedCar : public Vehicle {
         RedCar();
         ~RedCar();
         void Update();
+        int currLane1;
+        int currLane2;
+
+        Direction direction{noPress};
 };
 
 #endif

@@ -7,8 +7,8 @@ Vehicle::Vehicle(Type type, int laneDir) : type(type) {
             w = 90;
             h = 90;
             v = 0.0001;
-            x = 300;
-            y = 700;
+            x = 640 - w;
+            y = 700-h;
             break;
         case blue :
             w = 90;
@@ -36,7 +36,6 @@ Vehicle::Vehicle(const Vehicle &v2){
     w = v2.w;
     h = v2.h;
     v = v2.v;
-    direction = v2.direction;
     x = v2.x;
     y = v2.y;
 }
@@ -46,7 +45,6 @@ Vehicle::Vehicle(Vehicle &&otherV){
     w = std::move(otherV.w);
     h = std::move(otherV.h);
     v = std::move(otherV.v);
-    direction = std::move(otherV.direction);
     x = std::move(otherV.x);
     y = std::move(otherV.y);
 }
@@ -59,23 +57,25 @@ Vehicle::~Vehicle(){
 RedCar::RedCar() : Vehicle(red, 0){};
 
 RedCar::~RedCar(){
-    std::cout << "RedCar is destructed\n";
+    std::cout << "RedCar is destructed\n";  
 }
 
 void RedCar::Update(){
     switch(direction)
     {
         case kLeft :
+        if (x <= 0){
+            break;
+        };
             x-=5;
             break;
         case kRight :
+        if (x+w >= 640){
+            break;
+        }
             x += 5;
             break;
-        case kUp :
-            y -= 5;
-            break;
         case noPress :
-            y += 5;
             break;
     }
 }
