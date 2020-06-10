@@ -78,8 +78,11 @@ void Renderer::Render(RedCar &redCar, std::vector<Lane> &lanes){
             obstacle.w = vehicle.w;
             obstacle.h = vehicle.h;
             SDL_RendererFlip flip;
-            if (lane.getDirection() < 0){
+            if (lane.getDirection() == -1){
                 flip = SDL_FLIP_VERTICAL;
+            }
+            else {
+                flip = SDL_FLIP_HORIZONTAL;
             }
             SDL_RenderCopyEx(sdl_renderer, textures[vehicle.getType()], NULL, &obstacle, NULL, NULL, flip);
         }
