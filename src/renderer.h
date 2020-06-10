@@ -5,6 +5,7 @@
 #include "SDL.h"
 #include "vehicle.h"
 #include "lane.h"
+#include <map>
 #ifndef __INTELLISENSE__
 #include "SDL2_image/SDL_image.h"
 #endif
@@ -19,6 +20,8 @@ class Renderer {
     void UpdateWindowTitle(int distance, int fps);
 
     void VerticalDottedLine(int start_x);
+
+    std::map<Type, SDL_Texture *> textures;
 
     private:
     SDL_Window *sdl_window;

@@ -36,6 +36,12 @@ Renderer::Renderer(const std::size_t screen_width,
         std::cout << "SDL_image could not initialize.\n";
         std::cerr << IMG_GetError() << "\n";
     }
+
+    textures[red]=IMG_LoadTexture(sdl_renderer, "../assets/redCar.png");
+    textures[blue]=IMG_LoadTexture(sdl_renderer,"../assets/blueCar.png");
+    textures[truck]=IMG_LoadTexture(sdl_renderer,"../assets/truck.png");
+    textures[white]=IMG_LoadTexture(sdl_renderer,"../assets/whiteCar.png");
+
 }
 
 //Destructor
@@ -63,31 +69,31 @@ void Renderer::Render(RedCar &redCar, std::vector<Lane> &lanes){
     VerticalDottedLine(384);
     VerticalDottedLine(512);
 
-    // // Draw vehicles in lanes
-    // for (auto &lane : lanes){
-    //     for (auto &vehicle : lane.getVehicles()){
-    //         SDL_Rect obstacle;
-    //         SDL_Texture *cars;
-    //         cars = IMG_LoadTexture(sdl_renderer, vehicle.getImage());
-    //         obstacle.x = lane.getLaneRefx();
-    //         obstacle.y = vehicle.y;
-    //         obstacle.w = vehicle.w;
-    //         obstacle.h = vehicle.h;
-    //         SDL_RenderCopy(sdl_renderer, cars, NULL, &obstacle);
-    //     }
-    // }
+    // Draw vehicles in lanes
+    for (auto &lane : lanes){
+        for (auto &vehicle : lane.getVehicles()){
+            SDL_Rect obstacle;
+            obstacle.x = lane.getLaneRefx();
+            obstacle.y = vehicle.y;
+            obstacle.w = vehicle.w;
+            obstacle.h = vehicle.h;
+            SDL_RendererFlip flip;
+            if (lane.getDirection() < 0){
+                flip = SDL_FLIP_VERTICAL;
+            }
+            SDL_RenderCopyEx(sdl_renderer, textures[vehicle.getType()], NULL, &obstacle, NULL, NULL, flip);
+        }
+    }
 
 
     //RedCar
     SDL_Rect animation;
-    SDL_Texture *Car;
-    Car = IMG_LoadTexture(sdl_renderer, redCar.getImage());
     redCar.Update();
     animation.x = redCar.x;
     animation.y = redCar.y;
     animation.w = redCar.w;
     animation.h = redCar.h;
-    SDL_RenderCopy(sdl_renderer, Car, NULL, &animation);
+    SDL_RenderCopy(sdl_renderer, textures[red], NULL, &animation);
     SDL_RenderPresent(sdl_renderer);
  }
 

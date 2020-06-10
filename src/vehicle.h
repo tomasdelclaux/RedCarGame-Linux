@@ -35,10 +35,6 @@ class Vehicle{
         ~Vehicle();
 
         //Getters
-        const char* getImage() {
-            return image;
-        };
-
         Type getType() const{
             return type;
         };
@@ -60,9 +56,6 @@ class Vehicle{
     protected:
         //Red, blue, truck, white
         Type type;
-
-        //asset to load for this vehicle
-        const char *image;
 
         //velocity
         float v;

@@ -9,49 +9,29 @@ Vehicle::Vehicle(Type type, int laneDir) : type(type) {
             v = 0.0001;
             x = 300;
             y = 700;
-            image = "../assets/redCar.png";
             break;
         case blue :
             w = 90;
             h = 90;
             v = 5;
             y = 0;
-            if (laneDir >= 0){
-                image = "../assets/blueCar.png";
-            }
-            else {
-                image = "../assets/blueCarReverse.png";
-            }
             break;
         case truck :
             w = 105;
             h = 180;
             v = 5;
             y = 0;
-            if (laneDir >= 0){
-                image = "../assets/truck.png";
-            }
-            else {
-                image = "../assets/truckReverse.png";
-            }
             break;
         case white :
             w = 90;
             h = 90;
             v = 5;
             y = 0;
-            if (laneDir >= 0){
-                image = "../assets/whiteCar.png";
-            }
-            else {
-                image = "../assets/whiteCarReverse.png";
-            }
             break;
     }
 }
 
 Vehicle::Vehicle(const Vehicle &v2){
-    image = v2.image;
     type = v2.type;
     w = v2.w;
     h = v2.h;
@@ -62,7 +42,6 @@ Vehicle::Vehicle(const Vehicle &v2){
 }
 
 Vehicle::Vehicle(Vehicle &&otherV){
-    image = std::move(otherV.image);
     type = std::move(otherV.type);
     w = std::move(otherV.w);
     h = std::move(otherV.h);
