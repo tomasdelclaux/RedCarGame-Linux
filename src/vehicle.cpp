@@ -1,18 +1,19 @@
 #include "vehicle.h"
 
+int Vehicle::acceleration = 1;
+
 Vehicle::Vehicle(Type type, int laneDir) : type(type) {
     switch(type)
     {
         case red :
             w = 90;
             h = 90;
-            v = 0.0001;
             x = 640 - w;
             y = 700-h;
             break;
         case blue :
             w = 90;
-            h = 90;
+            h = 100;
             v = 5;
             y = 0;
             break;
@@ -22,9 +23,9 @@ Vehicle::Vehicle(Type type, int laneDir) : type(type) {
             v = 5;
             y = 0;
             break;
-        case white :
+        case gTruck :
             w = 90;
-            h = 90;
+            h = 100;
             v = 5;
             y = 0;
             break;
@@ -53,6 +54,12 @@ Vehicle::~Vehicle(){
     std::cout << "Vehicle is destructed\n";
 }
 
+void Vehicle::accelerate(int a){
+    acceleration=a;
+}
+
+
+RedCar::RedCar(int xLimit) : Vehicle(red, 0), xLimit(xLimit){};
 
 RedCar::RedCar() : Vehicle(red, 0){};
 
@@ -64,18 +71,20 @@ void RedCar::Update(){
     switch(direction)
     {
         case kLeft :
-        if (x <= 0){
-            break;
-        };
+            if (x <= 0){
+                break;
+            };
             x-=5;
             break;
         case kRight :
-        if (x+w >= 640){
+            if (x+w >= xLimit){
+                break;
+            }
+                x += 5;
+                break;
+        case kUp :
             break;
-        }
-            x += 5;
-            break;
-        case noPress :
+        case kRelease :
             break;
     }
 }

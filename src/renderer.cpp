@@ -39,8 +39,8 @@ Renderer::Renderer(const std::size_t screen_width,
 
     textures[red]=IMG_LoadTexture(sdl_renderer, "../assets/redCar.png");
     textures[blue]=IMG_LoadTexture(sdl_renderer,"../assets/blueCar.png");
-    textures[truck]=IMG_LoadTexture(sdl_renderer,"../assets/truck.png");
-    textures[white]=IMG_LoadTexture(sdl_renderer,"../assets/whiteCar.png");
+    textures[truck]=IMG_LoadTexture(sdl_renderer,"../assets/bigTruck.png");
+    textures[gTruck]=IMG_LoadTexture(sdl_renderer,"../assets/garbageTruck.png");
 
 }
 

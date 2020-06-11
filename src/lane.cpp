@@ -14,7 +14,12 @@ std::list<Vehicle> &Lane::getVehicles(){
 
 void Lane::updatePositions(){
     for (auto &vehicle : vehicles){
-        vehicle.y += 1;
+        if (this->getDirection() < 0){
+            vehicle.y += 2;
+        }
+        else {
+            vehicle.y += 1;
+        }
     }
 }
 
@@ -30,9 +35,9 @@ void Lane::addVehicle(){
             std::cout << "new Truck created";
             vehicles.emplace_back(Vehicle(truck, direction));
         }
-        else if (probability(engine) < PWhatVehicle['W']){
-            std::cout << "new White created";
-            vehicles.emplace_back(Vehicle(white, direction));
+        else if (probability(engine) < PWhatVehicle['G']){
+            std::cout << "new garbage truck created";
+            vehicles.emplace_back(Vehicle(gTruck, direction));
         }
         else if (probability(engine) < PWhatVehicle['B']){
             std::cout << "new Blue created";

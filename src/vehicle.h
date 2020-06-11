@@ -3,8 +3,8 @@
 #include <iostream>
 #include <math.h>
 
-enum Type { red, blue, white, truck};
-enum Direction {kLeft, kRight, noPress};
+enum Type { red, blue, gTruck, truck};
+enum Direction {kLeft, kRight, kUp, kRelease};
 
 class Vehicle{
     public:
@@ -39,6 +39,8 @@ class Vehicle{
             return type;
         };
 
+        void accelerate(int a);
+
         //method to update position
         void Update();
 
@@ -51,20 +53,26 @@ class Vehicle{
         int y;
 
     protected:
-        //Red, blue, truck, white
+        //Red, blue, truck, gTruck
         Type type;
 
         //velocity
         float v;
+
+        static int acceleration; 
 };
 
 class RedCar : public Vehicle {
     public:
+        RedCar(int xLimit);
         RedCar();
         ~RedCar();
         void Update();
-        Direction direction{noPress};
+        Direction direction{kRelease};
         bool alive{true};
+    
+    private:
+        int xLimit;
 };
 
 #endif

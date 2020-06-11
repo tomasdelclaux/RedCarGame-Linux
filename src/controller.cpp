@@ -7,6 +7,11 @@ void Controller::ChangeDirection(RedCar &redCar, Direction input) const{
   return;
 }
 
+void Controller::ChangeAcceleration(RedCar &redCar, int input) const {
+  redCar.accelerate(input);
+  return;
+}
+
 void Controller::HandleInput(bool &running, RedCar &redCar) const {
   SDL_Event e;
   while (SDL_PollEvent(&e)) {
@@ -16,18 +21,26 @@ void Controller::HandleInput(bool &running, RedCar &redCar) const {
       switch (e.key.keysym.sym) {
         case SDLK_LEFT:
           ChangeDirection(redCar, kLeft);
-          break;
+          return;
 
         case SDLK_RIGHT:
           ChangeDirection(redCar, kRight);
-          break;
-        
-        default:
-          ChangeDirection(redCar, noPress);
+          return;
+
+        case SDLK_UP:
+          ChangeAcceleration(redCar, 2);
+          return;
       }
     }
-    else {
-      ChangeDirection(redCar, noPress);
-    }
+    else if(e.type == SDL_KEYUP){
+      switch(e.key.keysym.sym){
+        case SDLK_LEFT:
+          ChangeDirection(redCar, kRelease);
+        case SDLK_RIGHT:
+          ChangeDirection(redCar, kRelease);
+        case SDLK_UP:
+          ChangeAcceleration(redCar, 1);
+      }
+    }  
   }
 }

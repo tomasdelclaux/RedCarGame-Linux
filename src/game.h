@@ -10,7 +10,7 @@
 
 class Game {
     public:
-    Game(int kScreenHeight);
+    Game(int kScreenHeight, int kScreenWidth);
      void Run(Controller const &controller, Renderer &renderer,
               std::size_t target_frame_duration);
      int GetScore() const;

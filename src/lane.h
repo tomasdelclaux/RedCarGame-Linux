@@ -65,7 +65,7 @@ class Lane{
     std::list<Vehicle> vehicles;
 
     int PNewVehicle{1};
-    std::map<char, int> PWhatVehicle{{ 'T', 1}, {'W', 2}, {'B', 3}};
+    std::map<char, int> PWhatVehicle{{ 'T', 1}, {'G', 2}, {'B', 3}};
 };
 
 #endif

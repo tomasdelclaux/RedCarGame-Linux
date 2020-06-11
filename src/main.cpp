@@ -10,7 +10,7 @@ int main(){
     constexpr std::size_t kScreenHeight{800};
 
     Controller controller;
-    Game game(kScreenHeight);
+    Game game(kScreenHeight, kScreenWidth);
     Renderer renderer(kScreenWidth, kScreenHeight);
     game.Run(controller, renderer, kMsperFrame);
     std::cout << "RED CAR GAME !!!!!\n";

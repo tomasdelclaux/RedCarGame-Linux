@@ -2,12 +2,14 @@
 #include <iostream>
 #include "SDL.h"
 
-Game::Game(int kScreenHeight){
-  lanes.emplace_back(Lane(-1,kScreenHeight, 0));
-  lanes.emplace_back(Lane(-1,kScreenHeight, 128));
-  lanes.emplace_back(Lane(1,kScreenHeight, 256));
-  lanes.emplace_back(Lane(1,kScreenHeight, 384));
-  lanes.emplace_back(Lane(1,kScreenHeight, 512));
+Game::Game(int kScreenHeight, int kScreenWidth){
+  lanes.emplace_back(Lane(-1,kScreenHeight, kScreenWidth/5 *0));
+  lanes.emplace_back(Lane(-1,kScreenHeight,  kScreenWidth/5 *1));
+  lanes.emplace_back(Lane(1,kScreenHeight,  kScreenWidth/5 *2));
+  lanes.emplace_back(Lane(1,kScreenHeight,  kScreenWidth/5 *3));
+  lanes.emplace_back(Lane(1,kScreenHeight,  kScreenWidth/5 *4));
+
+  redCar = RedCar(kScreenWidth);
 }
 
 void Game::Run(Controller const &controller, Renderer &renderer,
