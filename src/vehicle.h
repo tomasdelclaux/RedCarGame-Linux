@@ -63,10 +63,8 @@ class RedCar : public Vehicle {
         RedCar();
         ~RedCar();
         void Update();
-        int currLane1;
-        int currLane2;
-
         Direction direction{noPress};
+        bool alive{true};
 };
 
 #endif

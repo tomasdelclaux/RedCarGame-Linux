@@ -69,7 +69,18 @@ void Renderer::Render(RedCar &redCar, std::vector<Lane> &lanes){
     VerticalDottedLine(384);
     VerticalDottedLine(512);
 
-    // Draw vehicles in lanes
+
+    //RedCar
+    SDL_Rect animation;
+    redCar.Update();
+    animation.x = redCar.x;
+    animation.y = redCar.y;
+    animation.w = redCar.w;
+    animation.h = redCar.h;
+    SDL_RenderCopy(sdl_renderer, textures[red], NULL, &animation);
+
+
+    // Draw vehicles in lanes and check collision
     for (auto &lane : lanes){
         for (auto &vehicle : lane.getVehicles()){
             SDL_Rect obstacle;
@@ -77,6 +88,10 @@ void Renderer::Render(RedCar &redCar, std::vector<Lane> &lanes){
             obstacle.y = vehicle.y;
             obstacle.w = vehicle.w;
             obstacle.h = vehicle.h;
+            SDL_bool collision = SDL_HasIntersection(&obstacle, &animation);
+            if (collision == SDL_TRUE){
+                redCar.alive = false;
+            }
             SDL_RendererFlip flip;
             if (lane.getDirection() == -1){
                 flip = SDL_FLIP_VERTICAL;
@@ -88,15 +103,6 @@ void Renderer::Render(RedCar &redCar, std::vector<Lane> &lanes){
         }
     }
 
-
-    //RedCar
-    SDL_Rect animation;
-    redCar.Update();
-    animation.x = redCar.x;
-    animation.y = redCar.y;
-    animation.w = redCar.w;
-    animation.h = redCar.h;
-    SDL_RenderCopy(sdl_renderer, textures[red], NULL, &animation);
     SDL_RenderPresent(sdl_renderer);
  }
 

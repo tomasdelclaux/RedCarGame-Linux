@@ -64,8 +64,8 @@ class Lane{
     //vector of vehicles in the lane
     std::list<Vehicle> vehicles;
 
-    int PNewVehicle{10};
-    std::map<char, int> PWhatVehicle{{ 'T', 10}, {'W', 20}, {'B', 30}};
+    int PNewVehicle{1};
+    std::map<char, int> PWhatVehicle{{ 'T', 1}, {'W', 2}, {'B', 3}};
 };
 
 #endif

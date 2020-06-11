@@ -25,15 +25,19 @@ void Game::Run(Controller const &controller, Renderer &renderer,
     // Input, Update, Render - the main game loop.
     controller.HandleInput(running, redCar);
 
-    for (auto &lane : lanes){
-      lane.addVehicle();
+    if (redCar.alive){
+      for (auto &lane : lanes){
+        lane.addVehicle();
+      }
     }
 
     renderer.Render(redCar, lanes);
 
-    for (auto &lane : lanes){
-      lane.updatePositions();
-      lane.removeVehicles();
+    if (redCar.alive){
+      for (auto &lane : lanes){
+        lane.updatePositions();
+        lane.removeVehicles();
+      }
     }
 
     //TODO Remove vehicles from lanes
