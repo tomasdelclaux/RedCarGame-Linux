@@ -11,7 +11,6 @@ class Controller {
 
     void ChangeAcceleration(RedCar &redCar, int input) const;
 
-    int frameCount{0};
 };
 
 #endif
