@@ -68,6 +68,9 @@ RedCar::~RedCar(){
 }
 
 void RedCar::Update(){
+    if (!alive){
+        return;
+    }
     switch(direction)
     {
         case kLeft :
