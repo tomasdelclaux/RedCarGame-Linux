@@ -17,7 +17,7 @@ Vehicle::Vehicle(Type type) : type(type) {
             break;
         case blue :
             w = 90;
-            h = 100;
+            h = 90;
             v = 3;
             y = 0;
             break;
