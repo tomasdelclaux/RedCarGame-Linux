@@ -13,12 +13,10 @@ class Game {
     Game(int kScreenHeight, int kScreenWidth);
      void Run(Controller const &controller, Renderer &renderer,
               std::size_t target_frame_duration);
-     void GetScore();
      int GetSize() const;
     
     private:
      RedCar redCar;
-     int score;
      std::vector<Lane> lanes;
 };
 

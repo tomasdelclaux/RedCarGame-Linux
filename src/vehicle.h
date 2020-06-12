@@ -39,11 +39,17 @@ class Vehicle{
 
         int width() const {
             return w;
-        }
+        };
 
         int height() const {
             return h;
-        }
+        };
+        
+        int velocity() const {
+            return v;
+        };
+
+        static int getAcceleration ();
 
         //method to update position
         void Update();

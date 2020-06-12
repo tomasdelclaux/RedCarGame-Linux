@@ -2,6 +2,10 @@
 
 int Vehicle::acceleration = 1;
 
+int Vehicle::getAcceleration (){
+    return Vehicle::acceleration;
+};
+
 Vehicle::Vehicle(Type type) : type(type) {
     switch(type)
     {
@@ -14,19 +18,19 @@ Vehicle::Vehicle(Type type) : type(type) {
         case blue :
             w = 90;
             h = 100;
-            v = 5;
+            v = 3;
             y = 0;
             break;
         case truck :
-            w = 105;
+            w = 100;
             h = 180;
-            v = 5;
+            v = 1;
             y = 0;
             break;
         case gTruck :
-            w = 90;
-            h = 100;
-            v = 5;
+            w = 105;
+            h = 115;
+            v = 2;
             y = 0;
             break;
     }
@@ -86,8 +90,10 @@ void RedCar::Update(){
                 x += 5;
                 break;
         case kUp :
+            distance += 5;
             break;
         case kRelease :
+            distance += 1;
             break;
     }
 }

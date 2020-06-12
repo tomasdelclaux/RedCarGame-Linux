@@ -15,10 +15,10 @@ std::list<Vehicle> &Lane::getVehicles(){
 void Lane::updatePositions(){
     for (auto &vehicle : vehicles){
         if (!this->getDirection()){
-            vehicle.y += 3;
+            vehicle.y += vehicle.velocity()*vehicle.getAcceleration()*2;
         }
         else {
-            vehicle.y += 2;
+            vehicle.y += vehicle.velocity()*vehicle.getAcceleration();
         }
     }
 }
@@ -31,6 +31,7 @@ void Lane::addVehicle(){
     std::mt19937 engine(dev());
     std::uniform_int_distribution<std::mt19937::result_type> probability(1,100);
     if (probability(engine) <= PNewVehicle){
+        PNewVehicle ++;
         if (probability(engine) < PWhatVehicle['T']){
             vehicles.emplace_back(Vehicle(truck));
         }
