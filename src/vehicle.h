@@ -8,21 +8,21 @@ enum Direction {kLeft, kRight, kUp, kRelease};
 
 class Vehicle{
     public:
-        //Constructor
-        Vehicle(Type type, int laneDir);
+        //Constructors Destructors
+        Vehicle(Type type);
 
-        //Copy Constructor
         Vehicle(const Vehicle &v2);
 
-        //Move Constructor
         Vehicle(Vehicle &&otherV);
 
-        //overload assignment operator
+        ~Vehicle();
+
+        //Overloads
+
         Vehicle &operator=(const Vehicle &rv){
             return *this;
         };
 
-        //Overloading == operator to use list remove
         bool operator==(const Vehicle &v2) const{
             if (x == v2.x && y == v2.y && type == v2.getType()){
                 return true;
@@ -31,22 +31,25 @@ class Vehicle{
                 return false;
             }
         };
-        //Destructor
-        ~Vehicle();
 
         //Getters
         Type getType() const{
             return type;
         };
 
-        void accelerate(int a);
+        int width() const {
+            return w;
+        }
+
+        int height() const {
+            return h;
+        }
 
         //method to update position
         void Update();
 
-        //Dimensions
-        int w;
-        int h;
+        //method to accelerate
+        void accelerate(int a);
 
         //Coordinates
         int x;
@@ -56,10 +59,13 @@ class Vehicle{
         //Red, blue, truck, gTruck
         Type type;
 
-        //velocity
+        //velocity acceleration
         float v;
+        static int acceleration;
 
-        static int acceleration; 
+        //Dimensions
+        int w;
+        int h;
 };
 
 class RedCar : public Vehicle {
@@ -70,6 +76,7 @@ class RedCar : public Vehicle {
         void Update();
         Direction direction{kRelease};
         bool alive{true};
+        int distance{0};
     
     private:
         int xLimit;

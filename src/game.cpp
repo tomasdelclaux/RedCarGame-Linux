@@ -3,11 +3,11 @@
 #include "SDL.h"
 
 Game::Game(int kScreenHeight, int kScreenWidth){
-  lanes.emplace_back(Lane(-1,kScreenHeight, kScreenWidth/5 *0));
-  lanes.emplace_back(Lane(-1,kScreenHeight,  kScreenWidth/5 *1));
-  lanes.emplace_back(Lane(1,kScreenHeight,  kScreenWidth/5 *2));
-  lanes.emplace_back(Lane(1,kScreenHeight,  kScreenWidth/5 *3));
-  lanes.emplace_back(Lane(1,kScreenHeight,  kScreenWidth/5 *4));
+  lanes.emplace_back(Lane(false,kScreenHeight, kScreenWidth/5 *0));
+  lanes.emplace_back(Lane(false,kScreenHeight,  kScreenWidth/5 *1));
+  lanes.emplace_back(Lane(true,kScreenHeight,  kScreenWidth/5 *2));
+  lanes.emplace_back(Lane(true,kScreenHeight,  kScreenWidth/5 *3));
+  lanes.emplace_back(Lane(true,kScreenHeight,  kScreenWidth/5 *4));
 
   redCar = RedCar(kScreenWidth);
 }
@@ -27,14 +27,17 @@ void Game::Run(Controller const &controller, Renderer &renderer,
     // Input, Update, Render - the main game loop.
     controller.HandleInput(running, redCar);
 
+    // Diffficulty increase
     if (redCar.alive){
       for (auto &lane : lanes){
         lane.addVehicle();
       }
     }
 
+    //Render
     renderer.Render(redCar, lanes);
 
+    //Update vehicle in lanes and remove those that exit
     if (redCar.alive){
       for (auto &lane : lanes){
         lane.updatePositions();
@@ -42,7 +45,6 @@ void Game::Run(Controller const &controller, Renderer &renderer,
       }
     }
 
-    //TODO Remove vehicles from lanes
     frame_end = SDL_GetTicks();
 
     // Keep track of how long each loop through the input/update/render cycle
@@ -52,7 +54,7 @@ void Game::Run(Controller const &controller, Renderer &renderer,
 
     // After every second, update the window title.
     if (frame_end - title_timestamp >= 1000) {
-      renderer.UpdateWindowTitle(distance, frame_count);
+      renderer.UpdateWindowTitle(score, frame_count);
       frame_count = 0;
       title_timestamp = frame_end;
     }
@@ -64,4 +66,8 @@ void Game::Run(Controller const &controller, Renderer &renderer,
       SDL_Delay(target_frame_duration - frame_duration);
     }
   }
+}
+
+void Game::GetScore(){
+  score = redCar.distance;
 }

@@ -75,8 +75,8 @@ void Renderer::Render(RedCar &redCar, std::vector<Lane> &lanes){
     redCar.Update();
     animation.x = redCar.x;
     animation.y = redCar.y;
-    animation.w = redCar.w;
-    animation.h = redCar.h;
+    animation.w = redCar.width();
+    animation.h = redCar.height();
     SDL_RenderCopy(sdl_renderer, textures[red], NULL, &animation);
 
 
@@ -84,16 +84,16 @@ void Renderer::Render(RedCar &redCar, std::vector<Lane> &lanes){
     for (auto &lane : lanes){
         for (auto &vehicle : lane.getVehicles()){
             SDL_Rect obstacle;
-            obstacle.x = lane.getLaneRefx();
+            obstacle.x = lane.getLaneRefx() + ((screen_width/5 - vehicle.width())/2);
             obstacle.y = vehicle.y;
-            obstacle.w = vehicle.w;
-            obstacle.h = vehicle.h;
+            obstacle.w = vehicle.width();
+            obstacle.h = vehicle.height();
             SDL_bool collision = SDL_HasIntersection(&obstacle, &animation);
             if (collision == SDL_TRUE){
                 redCar.alive = false;
             }
             SDL_RendererFlip flip;
-            if (lane.getDirection() == -1){
+            if (!lane.getDirection()){
                 flip = SDL_FLIP_VERTICAL;
             }
             else {

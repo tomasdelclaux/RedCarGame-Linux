@@ -2,7 +2,7 @@
 
 int Vehicle::acceleration = 1;
 
-Vehicle::Vehicle(Type type, int laneDir) : type(type) {
+Vehicle::Vehicle(Type type) : type(type) {
     switch(type)
     {
         case red :
@@ -59,9 +59,9 @@ void Vehicle::accelerate(int a){
 }
 
 
-RedCar::RedCar(int xLimit) : Vehicle(red, 0), xLimit(xLimit){};
+RedCar::RedCar(int xLimit) : Vehicle(red), xLimit(xLimit){};
 
-RedCar::RedCar() : Vehicle(red, 0){};
+RedCar::RedCar() : Vehicle(red){};
 
 RedCar::~RedCar(){
     std::cout << "RedCar is destructed\n";  

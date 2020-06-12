@@ -1,6 +1,6 @@
 #include "lane.h"
 
-int Lane::getDirection(){
+bool Lane::getDirection(){
     return direction;
 }
 
@@ -14,11 +14,11 @@ std::list<Vehicle> &Lane::getVehicles(){
 
 void Lane::updatePositions(){
     for (auto &vehicle : vehicles){
-        if (this->getDirection() < 0){
-            vehicle.y += 2;
+        if (!this->getDirection()){
+            vehicle.y += 3;
         }
         else {
-            vehicle.y += 1;
+            vehicle.y += 2;
         }
     }
 }
@@ -32,16 +32,13 @@ void Lane::addVehicle(){
     std::uniform_int_distribution<std::mt19937::result_type> probability(1,100);
     if (probability(engine) <= PNewVehicle){
         if (probability(engine) < PWhatVehicle['T']){
-            std::cout << "new Truck created";
-            vehicles.emplace_back(Vehicle(truck, direction));
+            vehicles.emplace_back(Vehicle(truck));
         }
         else if (probability(engine) < PWhatVehicle['G']){
-            std::cout << "new garbage truck created";
-            vehicles.emplace_back(Vehicle(gTruck, direction));
+            vehicles.emplace_back(Vehicle(gTruck));
         }
         else if (probability(engine) < PWhatVehicle['B']){
-            std::cout << "new Blue created";
-            vehicles.emplace_back(Vehicle(blue, direction));
+            vehicles.emplace_back(Vehicle(blue));
         }
     }
 };
