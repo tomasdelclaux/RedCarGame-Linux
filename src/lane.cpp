@@ -13,12 +13,19 @@ std::list<Vehicle> &Lane::getVehicles(){
 }
 
 void Lane::updatePositions(){
-    for (auto &vehicle : vehicles){
+    for (auto v = vehicles.begin(); v != vehicles.end(); v++){
         if (!this->getDirection()){
-            vehicle.y += vehicle.velocity()*vehicle.getAcceleration()*2;
+            //avoid overlap of cars in lane
+            if (v != vehicles.begin() && std::prev(v)->y <= v->y + v->velocity() * v->getAcceleration() *2 + v->height()){
+                return;
+            }
+            v->y += v->velocity()*v->getAcceleration()*2;
         }
         else {
-            vehicle.y += vehicle.velocity()*vehicle.getAcceleration();
+            if (v != vehicles.begin() && std::prev(v)->y <= v->y + v->velocity() * v->getAcceleration() + v->height()){
+                return;
+            }
+            v->y += v->velocity()*v->getAcceleration();
         }
     }
 }
