@@ -17,6 +17,6 @@ class Difficulty {
         int Pgtruck;
         int Pblue;
         int PnewVehicle;
-}
+};
 
 #endif
