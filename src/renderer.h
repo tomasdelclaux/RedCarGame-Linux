@@ -6,9 +6,7 @@
 #include "vehicle.h"
 #include "lane.h"
 #include <map>
-#ifndef __INTELLISENSE__
-#include "SDL2_image/SDL_image.h"
-#endif
+#include "SDL_image.h"
 
 class Renderer {
     public:
