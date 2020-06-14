@@ -15,8 +15,6 @@ class Lane{
         Lane(const Lane &lane2){
             direction = lane2.direction;
             vehicles = lane2.vehicles;
-            PNewVehicle = lane2.PNewVehicle;
-            PWhatVehicle = lane2.PWhatVehicle;
             laneHeight = lane2.laneHeight;
             laneRefx = lane2.laneRefx;
         };
@@ -25,8 +23,6 @@ class Lane{
         Lane(Lane &&otherLane){
             direction = std::move(otherLane.direction);
             vehicles = std::move(otherLane.vehicles);
-            PNewVehicle = std::move(otherLane.PNewVehicle);
-            PWhatVehicle = std::move(otherLane.PWhatVehicle);
             laneHeight = std::move(otherLane.laneHeight);
             laneRefx = std::move(otherLane.laneRefx);
         };
@@ -37,7 +33,7 @@ class Lane{
         };
 
         //Add vehicle to lane
-        void addVehicle();
+        void addVehicle(Type type);
 
         //Remove vehicle from lane
         void removeVehicles();
@@ -62,9 +58,6 @@ class Lane{
         
         //vector of vehicles in the lane
         std::list<Vehicle> vehicles;
-
-        int PNewVehicle{2};
-        std::map<char, int> PWhatVehicle{{ 'T', 1}, {'G', 2}, {'B', 3}};
 };
 
 #endif

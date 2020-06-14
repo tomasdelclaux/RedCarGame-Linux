@@ -2,7 +2,7 @@
 #include <iostream>
 #include "SDL.h"
 
-Game::Game(int kScreenHeight, int kScreenWidth){
+Game::Game(int kScreenHeight, int kScreenWidth) : rollLanes(1,5), rollVehicles(1, 1000), rollTypes(1,10){
   lanes.emplace_back(Lane(false,kScreenHeight, kScreenWidth/5 *0));
   lanes.emplace_back(Lane(false,kScreenHeight,  kScreenWidth/5 *1));
   lanes.emplace_back(Lane(true,kScreenHeight,  kScreenWidth/5 *2));
@@ -29,9 +29,7 @@ void Game::Run(Controller const &controller, Renderer &renderer,
 
     // Diffficulty increase
     if (redCar.alive){
-      for (auto &lane : lanes){
-        lane.addVehicle();
-      }
+      upLevel();
     }
 
     //Render
@@ -65,5 +63,58 @@ void Game::Run(Controller const &controller, Renderer &renderer,
     if (frame_duration < target_frame_duration) {
       SDL_Delay(target_frame_duration - frame_duration);
     }
+  }
+}
+
+void Game::upLevel(){
+  int i = 0;
+  if (redCar.distance %5 != 4){
+    return;
+  }
+  while(i < addedLanes){
+    if (rollVehicles(engine) < PaddVehicle){
+      auto laneIndex = rollLanes(engine)-1;
+      if (laneIndex == lastAdded){
+        laneIndex = (lastAdded +1)%5;
+      }
+      lanes[laneIndex].addVehicle(getType());
+      lastAdded = laneIndex;
+    }
+    i++;
+  }
+  if (redCar.distance % 300 == 299){
+    if (PaddVehicle < 300){
+      std::cout << "increasing probability of adding a new car\n";
+      PaddVehicle++;
+    }
+  }
+  if (redCar.distance > 1000){
+    if (addedLanes == 2){
+      std::cout << "increasing lanes\n";
+      addedLanes++;
+    }
+  }
+  if (redCar.distance % 500 == 499){
+    if (Ptypes['T'] < 3){
+      std::cout << "increasing p of truck\n";
+      Ptypes['T']++;
+    }
+    if (Ptypes['G'] < 5){
+      std::cout << "increasing p of garbage\n";
+      Ptypes['G']++;
+    }
+  }
+}
+
+Type Game::getType(){
+  auto p = rollTypes(engine);
+  if(p < Ptypes['T']){
+    return truck;
+  }
+  else if(p < Ptypes['G']){
+    return gTruck;
+  }
+  else{
+    return blue;
   }
 }

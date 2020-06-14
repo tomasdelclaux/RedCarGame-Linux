@@ -30,25 +30,11 @@ void Lane::updatePositions(){
     }
 }
 
-void Lane::addVehicle(){
+void Lane::addVehicle(Type type){
     if (vehicles.size() > 0 && vehicles.back().y <= 180){
         return;
     }
-    std::random_device dev;
-    std::mt19937 engine(dev());
-    std::uniform_int_distribution<std::mt19937::result_type> probability(1,100);
-    if (probability(engine) <= PNewVehicle){
-        PNewVehicle ++;
-        if (probability(engine) < PWhatVehicle['T']){
-            vehicles.emplace_back(Vehicle(truck));
-        }
-        else if (probability(engine) < PWhatVehicle['G']){
-            vehicles.emplace_back(Vehicle(gTruck));
-        }
-        else if (probability(engine) < PWhatVehicle['B']){
-            vehicles.emplace_back(Vehicle(blue));
-        }
-    }
+    vehicles.emplace_back(Vehicle(type));
 };
 
 void Lane::removeVehicles(){
