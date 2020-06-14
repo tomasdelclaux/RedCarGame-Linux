@@ -46,6 +46,10 @@ Renderer::Renderer(const std::size_t screen_width,
 
 //Destructor
 Renderer::~Renderer() {
+  SDL_DestroyTexture(textures[red]);
+  SDL_DestroyTexture(textures[blue]);
+  SDL_DestroyTexture(textures[truck]);
+  SDL_DestroyTexture(textures[gTruck]);
   SDL_DestroyWindow(sdl_window);
   SDL_Quit();
 }
