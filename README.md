@@ -9,5 +9,13 @@ Thanks a lot for the following assets:
  
  ## Installation Instructions
  
-+
+Required Componentes:
+- SDL
+-SDL_image
+
+Install Ubuntu:
+- apt-get install libsdl2-image-dev
+- apt-get install libsdl2-dev
+
+
  
