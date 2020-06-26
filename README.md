@@ -67,6 +67,9 @@ The red car gamme is a simple pixelated game, where the redCar needs to move acr
   - Copy and move constructors. Lane.h line 15 23. The move constructor is used for more efficiente emplace_back of the object in the lanes vector of the game object.
   - Use of scope for automatic destruction. RedCar, lanes do not need to be called to be destroyed since they are in the scope of the game object and are destructed when this one is out of the scope, which is when the game is closed. 
 
+## For MAC
+
+Check my other repo also called RedCar game where i have the files that work with mac. Mainly library paths are different in cmake
 
 
  
